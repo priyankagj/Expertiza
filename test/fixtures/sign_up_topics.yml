@@ -5,13 +5,25 @@ Topic1:
   topic_identifier: A101
 
 Topic2:
-  topic_name: Topic1
+  topic_name: Topic2
   assignment_id: <%= Fixtures.identify(:assignment_project2) %>
   max_choosers: 2
   topic_identifier: A102
 
 Topic3:
-  topic_name: Topic1
+  topic_name: Topic3
   assignment_id: <%= Fixtures.identify(:assignment_project3) %>
   max_choosers: 3
   topic_identifier: A103
+
+Topic4:
+  topic_name: Research EPA
+  assignment_id: <%= Fixtures.identify(:assignment8) %>
+  max_choosers: 3
+  topic_identifier: A104
+
+Topic5:
+  topic_name: Research Communication
+  assignment_id: <%= Fixtures.identify(:assignment7) %>
+  max_choosers: 3
+  topic_identifier: A105

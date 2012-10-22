@@ -18,4 +18,5 @@ def test_scores_view
     assert_not_equal(scores[questionnaire.symbol][:assessments],0)
   end
 end
+  end
 

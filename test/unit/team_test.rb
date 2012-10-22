@@ -4,7 +4,7 @@ class TeamTest < ActiveSupport::TestCase
   fixtures :users
   fixtures :courses
   fixtures :teams
-  
+
   def test_add_team
     team = Team.new
     assert team.save
