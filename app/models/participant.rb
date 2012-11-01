@@ -78,6 +78,7 @@ class Participant < ActiveRecord::Base
     return false
   end
 
+  #delivers an email when a user is registered as an participant in an assignment
   def email(pw, home_page)
     user = User.find_by_id(self.user_id)
     assignment = Assignment.find_by_id(self.assignment_id)
@@ -119,7 +120,7 @@ class Participant < ActiveRecord::Base
     end
   end
 
-  # Returns the average score of all reviews for this user on this assignment (Which assignment ??? )
+  # Returns the average score of all reviews for this user on this assignment
   def get_average_score()
     sum_of_scores = 0
     self.response_maps.each do |response_map|
@@ -130,6 +131,7 @@ class Participant < ActiveRecord::Base
     getAverage sum_of_scores, self.response_maps.size
   end
 
+  # Returns the average score for the assignment whose id is passed
   def get_average_score_per_assignment(assignment_id)
     sum_of_scores = 0
     meta_response_maps = self.response_maps.metareview_response_maps
@@ -158,6 +160,7 @@ class Participant < ActiveRecord::Base
     return getAverage(number_of_scores, sum_of_scores)
   end
 
+  # This function is obtained by refactoring. It was repeated in all the above functions to calculate average
   def getAverage(sum, total)
     return total==0 ? 0 : ((sum.to_f / total.to_f)).to_i
   end

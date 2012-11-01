@@ -7,7 +7,8 @@ class ParticipantTest < ActiveSupport::TestCase
 	fixtures :assignments
   fixtures :sign_up_topics
   fixtures :users
-	
+
+  # test to check if a user can be added as a participant
 	def test_add_participant()
 		participant = Participant.new
     assert participant.valid?
@@ -22,7 +23,8 @@ class ParticipantTest < ActiveSupport::TestCase
     assert "student1_fullname", participant.fullname
     assert "assignment 1", participant.assignment.name
 	end
-	
+
+  # test to add a course participant
 	def test_add_course_participant()
 		participant = CourseParticipant.new
     assert !participant.valid?
@@ -30,7 +32,8 @@ class ParticipantTest < ActiveSupport::TestCase
 		
 		assert participant.valid?
 	end
-	
+
+  # test to add a assignment participant
 	def test_add_assignment_participant()
 		participant = AssignmentParticipant.new
 		assert !participant.valid?
@@ -40,7 +43,8 @@ class ParticipantTest < ActiveSupport::TestCase
 		participant.handle = 'test_handle'
 		assert participant.valid?
 	end
-	
+
+  # delete a participant
 	def test_delete_not_force
 		participant = participants(:par1)
 		participant.delete
@@ -63,16 +67,19 @@ class ParticipantTest < ActiveSupport::TestCase
     assert_equal "Research Communication", participant.get_topic_string
   end
 
+  #test to check if the average is calculated properly
   def test_get_average
     participant = participants(:par1)
     assert_equal 5, participant.getAverage(25, 5)
   end
 
+  #while calculating average, if total = 0
   def test_returns_zero_when_total_is_zero
     participant = participants(:par1)
     assert_equal 0, participant.getAverage(0, 0)
   end
 
+  #test to update the topic chosen for an assignment
   def test_update_topic_for_individual_assignment
     participant = participants(:par19)
     topic = sign_up_topics(:Topic5)
@@ -80,6 +87,7 @@ class ParticipantTest < ActiveSupport::TestCase
     assert_equal "Research Communication", participant.get_topic_string
   end
 
+  #test to update topic chosen if it is a team assignment
   def test_update_topic_for_team_assignment
     participant1 = participants(:par17)
     participant2 = participants(:par18)
@@ -94,13 +102,4 @@ class ParticipantTest < ActiveSupport::TestCase
     assert_equal "Research EPA", participant1.get_topic_string
     assert_equal "Research EPA", participant2.get_topic_string
   end
-
-  def test_get_average_score
-
-  end
-
-  def test_get_average_score_per_question
-
-  end
-
 end

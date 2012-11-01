@@ -15,6 +15,7 @@ module UsersHelper
     return users
   end
 
+  # get all the config details of a user
   def self.get_config
     config = {}
     cfgdir = RAILS_ROOT + "/config/"
@@ -29,6 +30,7 @@ module UsersHelper
     return config
   end
 
+  # Obtain all the attributes of a user
   def self.define_attributes(line_split, config)
     attributes = {}
     attributes["role_id"] = Role.find_by_name "Student"
@@ -42,6 +44,7 @@ module UsersHelper
     attributes
   end
 
+  # Save the user
   def self.store_item(line, ident, config)
     line_split = line.split("=")
     if line_split[0] == ident
@@ -52,15 +55,16 @@ module UsersHelper
     end
   end
 
+  # Create new user
   def self.create_user(attrs, session)
     user = User.find_by_name(attrs["name"])
     if user == nil
-      puts "creating"
       user = create_new_user(attrs, session)
     end
     return user
   end
 
+  # Create user
   def self.create_new_user(attrs, session)
     user = User.new
     user.update_attributes attrs

@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersHelperTest < ActiveSupport::TestCase
   fixtures :users
 
+  # if a user exists, you cannot create the same user again
   def test_create_user_when_user_exists
     attrs = {"name", "student1"}
     expectedUser = users(:student1)
@@ -12,6 +13,7 @@ class UsersHelperTest < ActiveSupport::TestCase
     assert_equal expectedUser, user
   end
 
+  #
   def test_create_user_when_user_exists
     attrs = {"name", "student"}
     currentUser = User.new
@@ -29,6 +31,7 @@ class UsersHelperTest < ActiveSupport::TestCase
     assert_equal ";", config["dlm"]
   end
 
+  #test define attributes methods
   def test_define_attributes
     config = {}
     config["dlm"]=";"
